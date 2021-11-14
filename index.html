@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media pLayer Using jQuery</title>
+    <style>
+        #meme_image {
+            width: 800px;
+            height: 800px;
+        }
+
+        /* CSS */
+        .load {
+            background-color: #EA4C89;
+            border-radius: 8px;
+            border-style: none;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-block;
+            font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            height: 40px;
+            line-height: 20px;
+            list-style: none;
+            margin: 0;
+            outline: none;
+            padding: 10px 16px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transition: color 100ms;
+            vertical-align: baseline;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-1:hover,
+        .button-1:focus {
+            background-color: #F082AC;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="image_div">
+            <img src="" class="img-fluid" alt="image_here" id="meme_image">
+        </div>
+        <div class="controls">
+            <button class="load">Load Next Meme</button>
+        </div>
+    </div>
+</body>
+<script src="jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: 'https://meme-api.herokuapp.com/gimme',
+            dataType: 'json',
+            success: function (result, status, xhr) {
+                if (result['nsfw'] == 'true'){
+                    window.location.reload()
+                }
+                $("#meme_image").attr("src", result['url'])
+            }
+        })
+
+        $(".load").click(function () {
+            $.ajax({
+                url: 'https://meme-api.herokuapp.com/gimme',
+                dataType: 'json',
+                success: function (result, status, xhr) {
+                    if (result['nsfw'] == 'true'){
+                    window.location.reload()
+                }
+                    $("#meme_image").attr("src", result['url'])
+                }
+            })
+        })
+    })
+</script>
+
+</html>
