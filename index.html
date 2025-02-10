@@ -61,7 +61,8 @@
 <script>
     $(document).ready(function () {
         $.ajax({
-            url: 'https://meme-api.herokuapp.com/gimme',
+            //url: 'https://meme-api.herokuapp.com/gimme',
+            url: 'https://meme-api.com/gimme',
             dataType: 'json',
             success: function (result, status, xhr) {
                 if (result['nsfw'] == 'true'){
@@ -73,7 +74,8 @@
 
         $(".load").click(function () {
             $.ajax({
-                url: 'https://meme-api.herokuapp.com/gimme',
+                //url: 'https://meme-api.herokuapp.com/gimme',
+                url: 'https://meme-api.com/gimme',
                 dataType: 'json',
                 success: function (result, status, xhr) {
                     if (result['nsfw'] == 'true'){
